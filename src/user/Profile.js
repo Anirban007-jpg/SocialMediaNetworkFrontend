@@ -93,7 +93,7 @@ class Profile extends Component {
                 <h2 className="mt-5 mb-5">Profile</h2>
                 <div className="row">
                     <div className="col-md-6">
-                        <img src={photoUrl} style={{height: "200px", width: "auto"}} className="img-thumbnail" />
+                        <img src={photoUrl} alt="Image" style={{height: "200px", width: "auto"}} className="img-thumbnail" />
                     </div>
                 
                     <div className="col-md-6">

@@ -3,7 +3,7 @@ import { isAuthenticated } from '../Auth';
 import { uncomment, comment } from './apiPost';
 import { Link } from 'react-router-dom';
 import DefaultProfile from "../images/images.png"
-import { text } from 'body-parser';
+
 
 class Comment extends Component {
 
