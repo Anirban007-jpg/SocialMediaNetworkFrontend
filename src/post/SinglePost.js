@@ -13,7 +13,8 @@ class SinglePost extends Component {
         like: false,
         likes: 0,
         redirecttoSignin : false,
-        comments: []
+        comments: [],
+        likebuttondisabled: false
     }
 
     componentDidMount = () => {
@@ -62,13 +63,16 @@ class SinglePost extends Component {
         const userId = isAuthenticated().user._id;
         const postId = this.props.match.params.postId;
         const token = isAuthenticated().token;
+        this.setState({likebuttondisabled: true})
         callApi(userId, token, postId).then(data => {
             if (data.error){
                 console.log(data.error);
+                this.setState({likebuttondisabled : false});
             }else{
                 this.setState({
                     like: !this.state.like,
                     likes: data.likes.length,
+                    likebuttondisabled: false
                 })
             }
         })
@@ -88,9 +92,9 @@ class SinglePost extends Component {
                         <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} onError={i => (i.target.src = `${DefaultProfile}`)} alt={post.name} style={{height: "300px", width: "100%", objectFit: "cover"}} className="img-thumbnail" />
                         <br/><br/>
                         {like ? (
-                            <h3 onClick={this.liketoggle}><i className="fa fa-thumbs-down text-warning bg-dark" style={{padding: '10px', borderRadius: '50%'}} />{" "}{likes} Like</h3>
+                            <h3 disabled={this.state.likebuttondisabled} onClick={this.liketoggle}><i className="fa fa-thumbs-down text-warning bg-dark" style={{padding: '10px', borderRadius: '50%'}} />{" "}{likes} Like</h3>
                         ): (
-                            <h3 onClick={this.liketoggle}><i className="fa fa-thumbs-up text-success bg-dark" style={{padding: '10px', borderRadius: '50%'}} />{" "}{likes} Like</h3>
+                            <h3 disabled={this.state.likebuttondisabled} onClick={this.liketoggle}><i className="fa fa-thumbs-up text-success bg-dark" style={{padding: '10px', borderRadius: '50%'}} />{" "}{likes} Like</h3>
                         )}
                         
                     <h5 className="card-title">TITLE OF THE POST : </h5>
