@@ -5,25 +5,21 @@ import { follow, unfollow } from './apiUser';
 class FollowProfileButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            isFollowButton: false
-         }
+        this.state = {  }
     }
 
     followClick = () => {
         this.props.onButtonClick(follow);
-        this.setState({ isFollowButton: true});
     };
 
     unfollowClick = () => {
         this.props.onButtonClick(unfollow);
-        this.setState({ isFollowButton: false});
     };
     
     render() { 
         return (
             <div className="d-inline-block mt-5">
-                 {!this.props.following && isFollowButton ? (
+                 {!this.props.following ? (
                     <button
                         onClick={this.followClick}
                         className="btn btn-success btn-raised mr-5"
