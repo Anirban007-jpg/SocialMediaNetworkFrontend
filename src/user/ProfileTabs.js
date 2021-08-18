@@ -6,7 +6,6 @@ class ProfileTabs extends Component {
     render() {
         const { posts } = this.props;
         return (
-            <div>
             <div className="row">
 
                 <div className="col-md-12">
@@ -25,7 +24,6 @@ class ProfileTabs extends Component {
                     ))}
                 </div>
             </div>
-        </div>
         )
     }
 }
